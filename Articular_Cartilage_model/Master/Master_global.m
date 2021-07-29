@@ -45,9 +45,10 @@ tolerance = 1e-3;
     save(string, 'stabattr', 'perresult', 'trlik', 'trlik2','saturation','storeNewattr','transition','distribution')
 
 %% Test any in silico condition and compute descriptive statistics
-% NB: not entirely robust for different WT attractors, adaptation required
+% NB: not entirely robust for different WT attractors than the ones from original manuscript, adaptation required
     disp('Specific case study - in silico condition...')
     % 1/ define conditions to test: e.g all possible values of pka&fgfr1 combi
+    condition = struct;
     condi = 1;
     for pka= 0:0.1:1 %0:0.2:1
         for fgfr= 0:0.1:1
@@ -1060,7 +1061,7 @@ combi_80=struct2table(SelectedCombi); % >80% transition
 
 load('Combi2test70_30.mat','SelectedCombi')
 combi_70=struct2table(SelectedCombi); % >70% transition
-report.moreThan70 = combi_70;
+
 
 
 %Find conditions in 90% threshold that are not in 100% threshold, etc..
@@ -1074,7 +1075,7 @@ report.moreThan70 = combi_70;
     writetable(result3,'CombinationSelection.xls','Sheet','Sheet4')
 
 report.moreThan90 = result1; %> 90% but <100%
-report.moreThan80 = combi_80;
-
+report.moreThan80 = result2; %> 80% but <90%
+report.moreThan70 = result3; %> 70% but <80%
 
 end
