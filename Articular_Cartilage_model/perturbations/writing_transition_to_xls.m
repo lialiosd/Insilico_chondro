@@ -1,5 +1,24 @@
+
 %% Write the result of 'perresult' in xls sheet to analyse the transition per node
 %NB: for run2 and run3: change the sheet number to avoid overwritting
+
+%% License
+% This file is part of the Insilico_chondo repository
+% (https://github.com/Rapha-L) 
+
+%Copyright (c) 2017-2021 - KU Leuven
+
+%File author(s): Raphaëlle Lesage (contact: liesbet.geris@kuleuven.be)
+
+%Distributed under the GPLv3 License.
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+
 %% definition of variables and parameters
 n=60; %number of nodes
 a=2; % number of the starting attractor for the transition (e.g. SOX9+=attr2)

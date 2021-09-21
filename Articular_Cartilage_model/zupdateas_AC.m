@@ -1,8 +1,22 @@
 function [ y ] = zupdateas_AC( z,node,speedstring )
-%% ZUPDATEA take one asynchronous time step, in one of 2 speed categories with adjustable saturation factor
+%% ZUPDATEAS take one asynchronous time step, in one of 2 speed categories with adjustable saturation factor
+% This file is part of the Insilico_chondo repository
+% (https://github.com/Rapha-L) 
 
-%% Variables listing
-% Each protein/gene is associated with an index number
+%Copyright (c) 2017-2021 - KU Leuven
+
+%File author(s): Raphaëlle Lesage (Partially based on J.Kerkhofs et al. PLoS
+%One (2016)). (contact: liesbet.geris@kuleuven.be)
+
+%Distributed under the GPLv3 License.
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+%% Each biological factor is associated with an index number as follows
 % Wnt Dsh IGFI  R-Smad Ihh Gli2 Bcat Lef/Tcf Runx2 Sox9 PTHrP PPR Col-X PKA
 %  1   2    3     4     5   6    7     8       9    10    11   12  13    14
 % MEF2C FGF FGFR3 STAT1 Smadcomplex Col-II Nkx3.2 ERK1/2 TGFbeta 

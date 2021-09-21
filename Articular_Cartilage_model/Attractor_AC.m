@@ -1,4 +1,22 @@
 function [d, sizes, da, percent, attractors] = Attractor_AC(nstates, saturation,input, inputindex)
+%% Algorithm to compute the model stable states through a Monte Carlo method
+% This file is part of the Insilico_chondo repository
+% (https://github.com/Rapha-L) 
+
+%Copyright (c) 2017-2021 - KU Leuven
+
+%File author(s): Raphaëlle Lesage (partially based on J.Kerkhofs et al. PLoS
+%One (2016))
+
+%Distributed under the GPLv3 License.
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+%%
 % State space screening with Monte Carlo analysis to find attractors
 % 1 argument + 3 optional arguments
 % The script requires: 

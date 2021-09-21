@@ -1,6 +1,23 @@
 %% Principal Component Analysis of perturbation screening
 %Description : load petrubation screening summary and PCA on transitions
 %percentage results. 
+
+%% License
+% This file is part of the Insilico_chondo repository
+% (https://github.com/Rapha-L) 
+
+%Copyright (c) 2017-2021 - KU Leuven
+
+%File author(s): Raphaëlle Lesage (contact: liesbet.geris@kuleuven.be)
+
+%Distributed under the GPLv3 License.
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <https://www.gnu.org/licenses/>
+
 %%
 load('Summary_screening_from_Hyp.mat','Summary_screening','MyCombi')
 %Summary_screening : each column is an attractor, each row a perturbation.

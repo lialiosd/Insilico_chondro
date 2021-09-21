@@ -3,6 +3,24 @@
 % number of attractors. Each value gives the % of transition towards one of
 % the target attractors. The initial attractor being the hypertophic one. 
 
+%% License
+% This file is part of the Insilico_chondo repository
+% (https://github.com/Rapha-L) 
+
+%Copyright (c) 2017-2021 - KU Leuven
+
+%File author(s): Raphaëlle Lesage (contact: liesbet.geris@kuleuven.be)
+
+%Distributed under the GPLv3 License.
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+
+%% Go through all computed combinations
 % total number of perturbations= length(combnk(1:60,2))*4 = 7080
 
 C=combnk(1:60,2); %create the full set of possible combinations

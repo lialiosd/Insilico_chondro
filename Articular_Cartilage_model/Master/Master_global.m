@@ -1,8 +1,25 @@
 %% Master script combining AtoZ analysis from publication %%
 
+% This file is part of the Insilico_chondo repository
+% (https://github.com/Rapha-L) 
+
+%Copyright (c) 2017-2021 - KU Leuven
+
+%File author(s): Raphaëlle Lesage
+
+%Distributed under the GPLv3 License.
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+%% Set global variables
 % rng('shuffle')
+
 global n
-n = 60;
+n = 60; %number of nodes in network
 
 global tolerance
 tolerance = 1e-3;
