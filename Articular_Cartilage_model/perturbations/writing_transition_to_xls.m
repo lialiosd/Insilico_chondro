@@ -28,7 +28,7 @@ a=2; % number of the starting attractor for the transition (e.g. SOX9+=attr2)
 load('SingleNodePertub1_0.66667.mat') %e.g. 'SingleNodePertub.....mat'
 
 %load variable names:
-load('component.mat','componentnames');
+load('components.mat','componentnames');
 names=[componentnames{1,:}];
 
 %name of the excel file? where data are written and saved

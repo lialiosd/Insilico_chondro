@@ -48,8 +48,8 @@ for comb=1:length(C) %screen each combination one by one
            n = n+1
            Summary_screening(n,:) = twicepresult{a,i};
            
-           NameFirst=fromNumToName(node1,'component.mat');
-           NameSecond=fromNumToName(node2,'component.mat');
+           NameFirst=fromNumToName(node1,'components.mat');
+           NameSecond=fromNumToName(node2,'components.mat');
            MyCombi{n} = [char(NameFirst) '-' char(NameSecond) ' ' perturb_type{i}];     
            %MyCombi{n} = [char(NameFirst) ' - ' char(NameSecond) ' ' num2str(i)]  
        end
