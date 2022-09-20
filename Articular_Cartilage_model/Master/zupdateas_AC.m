@@ -17,7 +17,6 @@ function [ y ] = zupdateas_AC( z,node,speedstring )
 %     along with this program.  If not, see <https://www.gnu.org/licenses/>
 
 %% Each biological factor is associated with an index number as follows
-
 % Wnt Dsh IGFI  R-Smad Ihh Gli2 Bcat Lef/Tcf Runx2 Sox9 PTHrP PPR Col-X PKA
 %  1   2    3     4     5   6    7     8       9    10    11   12  13    14
 % MEF2C FGF FGFR3 STAT1 Smadcomplex Col-II Nkx3.2 ERK1/2 TGFbeta 
@@ -75,7 +74,7 @@ switch node
     case 17
         y = z(1,16);
     case 18
-        y = (2/3)*(2/3*z(1,17) + (2/3*z(1,27))) + z(1,42)/3 - z(1,19) + z(1,54)*(1-z(1,17)) ;
+        y = (z(1,17) + z(1,27) + 0.75*z(1,42))*s(3) - z(1,19) + z(1,54)*(1-z(1,17)) ;
     case 19
         y = z(1,4) - 0.25 * z(1,22);  
     case 20
