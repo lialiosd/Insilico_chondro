@@ -59,7 +59,7 @@ tolerance = 1e-3;
     [perresult, stabattr, nb_transition,storeNewattr,transition,twicepresult,distribution] = StateStab_perturbation(saturation,attractors);
     % save variables in file.mat:
     string = ['SingleNodePertub' '_sat' num2str(saturation) '.mat'];
-    save(string, 'stabattr', 'perresult', 'trlik', 'trlik2','saturation','storeNewattr','transition','distribution')
+    save(string, 'stabattr', 'nb_transition','perresult','saturation','storeNewattr','transition','twicepresult','distribution')
 
 %% Test any in silico condition and compute descriptive statistics
 % NB: not entirely robust for different WT attractors than the ones from original manuscript, adaptation required
@@ -399,8 +399,8 @@ for i = 2:5
 s(i) = 2* saturation/i;
 end
 
-perresult = cell(length(attractors),n,2); 
-storeNewattr= cell(length(attractors),n,2);
+perresult = cell(length(attractors),n,2); % for each attractor, each node, store result of perturbation down (1st) and up (2nd)
+storeNewattr= cell(length(attractors),n,2); % for each attractor, each node, each perturbation, store occurence of new attractors if exist
 twicepresult = cell(length(attractors),n,2); 
 
 tic
@@ -412,16 +412,17 @@ for i = 1:length(attractors)
     for j = [1:n] 
         
         disp(['node ' num2str(j) ' ...'])
-        if (attr(1,j) ~= 1) && (attr(1,j) ~= 0) % 2 possible flip states: 0 and 1: first 1 % rest algoritme uitwerken
+        if (attr(1,j) ~= 1) && (attr(1,j) ~= 0) % 2 possible flip states: 0 and 1: first 0
         for k = 1:2
             per = attr;
             per(1,j) = k-1;% create perturbed state
-            if ~isequal(attr,zupdates_AC(per))
-                [attrcnt,~,stateruns] = ssattr(per, runs, attractors, fixedtime,j);
-                perresult(i,j,k) = {attrcnt/2}; % store results of perturbation
+            if ~isequal(attr,zupdates_AC(per)) % (A) Perturbation has an effect (changes initial state)
+                [attrcnt,~,stateruns] = ssattr(per, runs, attractors, fixedtime,j); %Attrcnt is a count value: amount of time (over 100 repeatitions), that the attractors are reached.
+                perresult(i,j,k) = {attrcnt/2}; % store results of perturbation divided per two (overall proba of transition per node accounts for up and down perturbations but some nodes can only be perturbed one way)
                 twicepresult(i,j,k) = {attrcnt};
                 storeNewattr(i,j,k)={stateruns};  
-            else
+                
+            else % (B) Perturbation won't have any effect
                 attrcnt = zeros(1,length(attractors)); % all transitions will go to the initial state
                 twicepresult(i,j,k) = {attrcnt};
                 attrcnt(i) = runs/2; % we want to give this the same weight: since every node has weight one, and we perform 2 simulations here, we divide by 2
@@ -454,7 +455,7 @@ end
 % 
 
 nattr = length(attractors); % determine the number of attractors
-stabattr = cell(3,nattr,2); % stores how many flips have the potential to change attractors, second row contains overall prob, third row probability per state
+stabattr = cell(3,nattr,2); % stores how many flips have the potential to change attractors, second row contains overall prob, third row probability per node
 nb_transition = zeros(nattr,nattr,2); % contains likelihood of transition (going from attr to another attr)
 for c = 1:2
 for a = 1:nattr
@@ -489,8 +490,8 @@ end
 
 function [attrcnt,newattr,stateruns] = ssattr(initstate,runs,attractors, fixedtime, fixednodes)
 %% Description
-% SSATTR single state attractor analysis: investigate probability of ending
-% up in a certain attractor from a given starting state
+% SSATTR single state attractor analysis: check possibility of ending
+% up in a certain attractor from a given starting state (transition)
 %fixenodes=vector of nodes to keep fixed
 %%
 
@@ -508,9 +509,9 @@ state = initstate;
 attr = 0;  
  while (attr == 0)
     t = t + 1;  
-    if t > fixedtime
-    attr = 1; % you can only reach attractor after perturbation period
-    state(1,:) = state(2,:) .* state(3,:); %global activity is multiplication of slow and fast subvariables.
+    if t > fixedtime % Attractor can only be reached (algorithm stops) after perturbation period
+    attr = 1; 
+    state(1,:) = state(2,:) .* state(3,:); %Global activity is multiplication of slow and fast subvariables.
     end
     temp = randperm(n);
     if t <= fixedtime % depending on whether fixed interval passed or not
