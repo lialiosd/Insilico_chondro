@@ -56,7 +56,7 @@ tolerance = 1e-3;
    
 %% Single perturbation
     disp('Screen single node perturbations...')
-    [perresult, stabattr, nb_transition,storeNewattr,transition,twicepresult,distribution] = StateStab_perturbation(saturation,attractors);
+    [perresult, stabattr, nb_transition,storeNewattr,transition,twicepresult,distribution] = StabState_perturbation(saturation,attractors);
     % save variables in file.mat:
     string = ['SingleNodePertub' '_sat' num2str(saturation) '.mat'];
     save(string, 'stabattr', 'nb_transition','perresult','saturation','storeNewattr','transition','twicepresult','distribution')
@@ -378,8 +378,8 @@ Profiles = struct();
 end
 
 % Single node perubrations associated functions:
-function [perresult, stabattr, nb_transition,storeNewattr,transition,twicepresult,distribution] = StateStab_perturbation(saturation,attractors)
-% StateStab_perturbation: Calculates the stability of a states by perturbing network nodes one by
+function [perresult, stabattr, nb_transition,storeNewattr,transition,twicepresult,distribution] = StabState_perturbation(saturation,attractors)
+% StabState_perturbation: Calculates the stability of a states by perturbing network nodes one by
 % one
 
 %set parameters:

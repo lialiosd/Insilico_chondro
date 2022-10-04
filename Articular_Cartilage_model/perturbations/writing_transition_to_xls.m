@@ -25,7 +25,7 @@ a=2; % number of the starting attractor for the transition (e.g. SOX9+=attr2)
 
 %% loading of file
 %load the mat containing 'perresult' :
-load('SingleNodePertub1_0.66667.mat') %e.g. 'SingleNodePertub.....mat'
+load('SingleNodePertub1sat0.66667.mat') %e.g. 'SingleNodePertub.....mat'
 
 %load variable names:
 load('components.mat','componentnames');

@@ -1,6 +1,6 @@
-function [perresult, stabattr, nb_transition,storeNewattr,transition,twicepresult,distribution] = StateStab_perturbation(saturation,runnumber,attractor_file)
-% StateStab_perturbation: Calculates the stability of a states by perturbing network nodes one by
-% one
+function [perresult, stabattr, nb_transition,storeNewattr,transition,twicepresult,distribution] = StabState_perturbation(saturation,runnumber,attractor_file)
+% StabState_perturbation: Calculates the stability of a state by perturbing
+% network nodes one by one
 
 [attractors] = format_attractors(attractor_file);
 disp(['formatting done...'])
