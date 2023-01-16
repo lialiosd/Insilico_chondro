@@ -1,8 +1,10 @@
+#include <iostream> 
 #include "z_update.h"
 
 float z_update(float* sv, int node){
 // fast sub-variables = protein level regulations:
 
+float s[5] = {0.0};
 /*
  * Each biological factor is associated with an index number as follows
  * Wnt Dsh IGFI  R-Smad Ihh Gli2 Bcat Lef/Tcf Runx2 Sox9 PTHrP PPR Col-X PKA
@@ -100,7 +102,7 @@ float z_update(float* sv, int node){
     case 40:
       return s[2] *(sv[22] + sv[56]);
     case 41:
-      return (sv[1) + sv[33] +  sv[17] + sv[27])*s[4];
+      return (sv[1] + sv[33] +  sv[17] + sv[27])*s[4];
     case 42:
       return sv[3];
     case 43:
