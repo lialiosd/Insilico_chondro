@@ -1,0 +1,9 @@
+# Exececutables
+app
+# obj files
+
+/obj
+*.o
+# Swap files
+*.swp
+*.swo
