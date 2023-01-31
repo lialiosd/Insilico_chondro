@@ -1,0 +1,40 @@
+Procedure and method to run analyses as provided in publication.
+
+Disclaimer
+This file is part of the Insilico_chondo repository  (https://github.com/Rapha-L) 
+Copyright (c) 2017-2021 - KU Leuven
+File author(s): Raphaëlle Lesage (contact: raphaelle.lesage@kuleuven.be or liesbet.geris@kuleuven.be )
+Distributed under the GPLv3 License.
+The associated programs are a free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with these programs.  If not, see https://www.gnu.org/licenses/
+
+Master script
+-	a Master.m script is provided in a dedicated folder /Master. It allows to perform most of the steps below described in one run ( high computing time expected) to reproduce the results of the publication. In addition, it provides an extra tool that was used to automatically select the best conditions out of the screening, based on a transition threshold. 
+However, one may want to run part of the pipeline only. For that purpose a detailed procedure to use the separated scripts is provided below to guide users.
+
+Detailed procedure
+-	Monte Carlo analysis for wild type canalization;
+1.	run Attractor_AC.m  with the following arguments nstates=10000 (number of initialisations) saturation = 2/3 (saturation constant), do not provide the optional argument input and inputindex except if a specific external growth factor cues are to be assessed (cf. ‘canalization in controlled environment’ in manuscript). 
+
+-	Monte Carlo analysis for canalization in controlled environment:
+1.	run Attractor_AC.m  with the following arguments nstates=10000 (number of initialisations) saturation = 2/3 (saturation constant), input = [value1, value2,etc..], inputindex= [node1, node2,etc..]
+
+-	Run Perturbation with ‘StabState_perturbation.m’.  
+1.	Make Sure to copy in the same directory, the WT attractor result matrice from the Monte Carlo analysis and the component.mat matrice with variable names.
+2.	Results are stored in ‘SinglePerturb.mat’ file (the transition matrix correspond to the Markov Chain with the probability of transition from one state to another. 
+
+-	Write result in pre-formatted excel file : ‘writing_transition_to_xls.m’ :
+1.	define the attractor index from which transition results must be written (line5) (e.g. in publication model Sox9+ is attractor #2 and Runx2 is attractor #3.
+2.	Use the templates “transition_pernode_AC_fromRunx2_template.xls” and “transition_pernode_AC_fromSox9_template.xls” as destination file to write the results (line 16). (remove the term ‘template’ in the title of the excel file to avoid overwriting)
+
+-	Test any in silico scenario or try different drug combinations and doses with the ‘Insilico_Conditions_screen.m’ script 
+1.	It requires the function ‘inSilicoConditions_return.m’ in the same directory
+2.	Define the conditions to be tested in the first part of the script
+3.	Conditions are repeated 100times to compute the percentage of state transitions and this is repeated 3 times to compute average and standard deviation. Results are written in an excel file. 
+
+-	Screen all possible pairwise perturbations (parallel computing) from the Sox9+ and the Runx2+ attractor. NB: None attractor removed from the screened initial states in a non robust way (based on attractor index from twin publication).  This part was run using parallel computing on a big cluster (HPC). Each combination of 2 nodes among the total amount of nodes can be screened and results in a new .mat file entitled ‘Bi_perturbation#run(node1,node2).mat’. 
+
+-	Analyse the ‘Bi-perturbation’ screening:
+1.	The folder /result example provide a sample of result matrices from the screening, as an example.
+2.	Summarize all screening results in a single table: Summarize_screening_inMatrix.m. an example is provided summarizing all pairwise perturbation results from the hypertrophic state: “Summary_screening_from_Hyp.mat”
+3.	Generate PCA plot of transition result out of the Runx2+/hypertrophic state with Plot_PCA_on_screening_results.m
+

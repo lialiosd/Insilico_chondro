@@ -2,7 +2,7 @@ CXX      := icx
 CXXFLAGS := -Wall -L$(MKLROOT)/lib/intel64
 CPPFLAGS := -Iinclude -I$(MKLROOT)/include
 OPTRPT   :=  #-qopt-report=5
-##LDLIBS   := -L$(LD_LIBRARY_PATH) -L$(MKLROOT)/lib/intel64
+LDLIBS   := -L$(LD_LIBRARY_PATH) -L$(MKLROOT)/lib/intel64
 LDFLAGS  := -lstdc++ -qopenmp -qmkl=parallel
 
 SRC_DIR := ./src
@@ -16,7 +16,7 @@ default : app
 
 .PHONY :app
 app : $(OBJ)
-	$(CXX) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 # Build specific files
 

@@ -22,7 +22,7 @@ float s[5] = {0.0};
 */
   switch (node){
     case 1:
-      return 1.0 - sv[49] - sv[48]; 
+      return 1.0 - sv[49] - sv[48];
     case 2:
       return sv[50] - 0.3*sv[4];
     case 3:
@@ -32,7 +32,7 @@ float s[5] = {0.0};
     case 5:
       return 1.0; 
     case 6:
-      return  sv[5]/1.5; 
+      return  sv[5]/1.5;
     case 7:
       return 1.0 - sv[36];
     case 8:
@@ -40,15 +40,15 @@ float s[5] = {0.0};
     case 9:
       return sv[38] + sv[22] + sv[32] - sv[10] - sv[14]- sv[26]*sv[30] - sv[31] - sv[43];
     case 10:
-      return sv[14] + sv[26] - sv[7] - sv[9]; 
+      return sv[14] + sv[26] - sv[7] - sv[9];
     case 11:
-      return 1.0; 
+      return 1.0;
     case 12:
       return sv[11];
     case 13:
-      return 1.0; 
+      return 1.0;
     case 14:
-      return (sv[12] + sv[3])*(s[2]); 
+      return (sv[12] + sv[3])*(s[2]);
     case 15:
       return sv[34] + sv[19] - sv[30] - sv[26];
     case 16:
@@ -98,7 +98,7 @@ float s[5] = {0.0};
     case 38:
       return sv[39] - 0.5*sv[37];
     case 39:
-      return (sv[41] + sv[42] + sv[54])*s[3]; 
+      return (sv[41] + sv[42] + sv[54])*s[3];
     case 40:
       return s[2] *(sv[22] + sv[56]);
     case 41:
