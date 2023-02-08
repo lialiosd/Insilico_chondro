@@ -1,6 +1,5 @@
 #include "mod_states.h"
 
-
 // int check_states(float* state1,float* state2, const int max_id){
   
 //   return 0;

@@ -1,9 +1,8 @@
 CXX      := icx
 CXXFLAGS := -Wall -L$(MKLROOT)/lib/intel64
 CPPFLAGS := -Iinclude -I$(MKLROOT)/include
-OPTRPT   :=  #-qopt-report=5
-##LDLIBS   := -L$(LD_LIBRARY_PATH) -L$(MKLROOT)/lib/intel64
 LDFLAGS  := -lstdc++ -qopenmp -qmkl=parallel
+LDLIBS   := -L$(LD_LIBRARY_PATH) -L$(MKLROOT)/lib/intel64 -Iinclude
 
 SRC_DIR := ./src
 OBJ_DIR := ./obj
@@ -21,7 +20,7 @@ app : $(OBJ)
 # Build specific files
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
-	$(CXX) $(CPPFLAGS) $(CXX_FLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 .PHONY :clean
 clean :
