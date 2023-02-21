@@ -1,6 +1,20 @@
 import numpy as np
 
+# Wnt Dsh IGFI  R-Smad Ihh Gli2 Bcat Lef/Tcf Runx2 Sox9 PTHrP PPR Col-X PKA
+#  0   1    2     3     4   5    6     7       8     9    10   11  12    13
+# MEF2C FGF FGFR3 STAT1 Smadcomplex Col-II Nkx3.2 ERK1/2 TGFbeta 
+#   14   15   16    17       18       19     20     21      22
+# MMP13 Smad7 Smad3 FGFR1 ATF2 NFkb HDAC4 CCND1 Dlx5  BMP  p38
+#   23   24    25    26    27   28   29    30    31   32    33
+#   GSK DC PP2A Akt PI3K Elk-1 
+#   34  35  36  37   38   39   
+# Ras IGF-IR Msx2 EF-1 ATF4 HIF-2alpha  GREM1 FRZB DKK1 Frizzled-LRP5/7
+# 40   41    42   43   44     45         46   47   48      49     
+# Cytokines  ALK1 ALK5 Rinflam TAK1 JNK Proteoglycans IkB-a Socs FOXO1
+#   50        51   52    53     54   55     56          57   58    59
+
 def z_update_fast(state, node, s):
+  '''Node updates for gene expression'''
   if node == 0:
     y = 1.0 - state[48] - state[47]
   elif node == 1:
@@ -129,6 +143,7 @@ def z_update_fast(state, node, s):
   return np.clip(y, 0.0, 1.0)
 
 def z_update_slow(state, node, s):
+    '''Node updates for protein expression'''
   if node == 0:
     y = 2.0 * state[5] - state[42]
   elif node == 1:
