@@ -143,7 +143,7 @@ def z_update_fast(state, node, s):
   return np.clip(y, 0.0, 1.0)
 
 def z_update_slow(state, node, s):
-    '''Node updates for protein expression'''
+  '''Node updates for protein expression'''
   if node == 0:
     y = 2.0 * state[5] - state[42]
   elif node == 1:
