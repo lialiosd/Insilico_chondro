@@ -10,3 +10,7 @@ app
 
 # Hidden stuff
 ._*
+
+# Jupyter
+/pynsilico/.ipynb_checkpoints/
+/pynsilico/__pycache__/
